@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: demo-miniapp-service
+
+server:
+  port: 18082
