@@ -50,4 +50,14 @@ class ProbeRepository {
     boolean deleteById(String probeId) {
         return jdbcTemplate.update("DELETE FROM e2e_probe WHERE probe_id = ?", probeId) > 0;
     }
+
+    int deleteByPrefix(String probeIdPrefix) {
+        String escapedPrefix = probeIdPrefix
+                .replace("!", "!!")
+                .replace("%", "!%")
+                .replace("_", "!_");
+        return jdbcTemplate.update(
+                "DELETE FROM e2e_probe WHERE probe_id LIKE ? ESCAPE '!'",
+                escapedPrefix + "%");
+    }
 }
