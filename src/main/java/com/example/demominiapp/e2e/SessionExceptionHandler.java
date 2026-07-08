@@ -25,4 +25,16 @@ class SessionExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(new ErrorResponse("INVALID_CREDENTIALS", "测试账号或密码错误"));
     }
+
+    @ExceptionHandler(InvalidProbeIdException.class)
+    ResponseEntity<ErrorResponse> handleInvalidProbeId() {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse("PROBE_ID_NOT_TEST", "探针 ID 必须以 TEST_ 开头"));
+    }
+
+    @ExceptionHandler(ProbeNotFoundException.class)
+    ResponseEntity<ErrorResponse> handleProbeNotFound() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponse("PROBE_NOT_FOUND", "未找到 TEST 探针数据"));
+    }
 }

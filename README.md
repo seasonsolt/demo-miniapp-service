@@ -13,13 +13,16 @@
 - `POST /api/e2e/login`：使用固定测试账号换取短期随机 token。
 - `GET /api/e2e/session`：使用 `Authorization: Bearer <token>` 查询当前测试会话。
 - `GET /api/e2e/protected-probe`：验证受保护请求的 token 拒绝和通过行为。
+- `PUT /api/e2e/probes/{probeId}`：写入 `TEST_` 探针数据。
+- `GET /api/e2e/probes/{probeId}`：读取 `TEST_` 探针数据。
+- `DELETE /api/e2e/probes/{probeId}`：重置 `TEST_` 探针数据。
 
 测试账号：
 
 - account：`test-user`
 - password：`test-password`
 
-会话 token 仅保存在服务内存中，不使用 JWT 或外部存储；默认有效期为 900 秒。
+会话 token 仅保存在服务内存中，不使用 JWT 或外部存储；默认有效期为 900 秒。探针数据保存在 H2 in-memory 中，且只允许 `TEST_` 前缀 ID。
 
 ## 快速验证
 
