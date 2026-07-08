@@ -16,6 +16,7 @@
 - `PUT /api/e2e/probes/{probeId}`：写入 `TEST_` 探针数据。
 - `GET /api/e2e/probes/{probeId}`：读取 `TEST_` 探针数据。
 - `DELETE /api/e2e/probes/{probeId}`：重置 `TEST_` 探针数据。
+- `GET /api/e2e/error-probe/{errorType}`：按 `bad-request` / `server-error` 稳定返回 400 / 500 错误。
 
 测试账号：
 
