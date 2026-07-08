@@ -10,6 +10,16 @@
 ## 当前 API
 
 - `GET /api/e2e/health`：返回服务健康状态、服务名、版本和当前时间。
+- `POST /api/e2e/login`：使用固定测试账号换取短期随机 token。
+- `GET /api/e2e/session`：使用 `Authorization: Bearer <token>` 查询当前测试会话。
+- `GET /api/e2e/protected-probe`：验证受保护请求的 token 拒绝和通过行为。
+
+测试账号：
+
+- account：`test-user`
+- password：`test-password`
+
+会话 token 仅保存在服务内存中，不使用 JWT 或外部存储；默认有效期为 900 秒。
 
 ## 快速验证
 
@@ -17,6 +27,9 @@
 mvn test
 mvn spring-boot:run
 curl http://127.0.0.1:18082/api/e2e/health
+curl -X POST http://127.0.0.1:18082/api/e2e/login \
+  -H 'Content-Type: application/json' \
+  -d '{"account":"test-user","password":"test-password"}'
 ```
 
 本服务只用于 demo 小程序 E2E baseline，不承载真实业务流程。

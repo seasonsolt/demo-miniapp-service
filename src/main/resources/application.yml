@@ -4,3 +4,7 @@ spring:
 
 server:
   port: 18082
+
+demo-miniapp:
+  session:
+    token-ttl-seconds: 900
